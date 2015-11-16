@@ -1,0 +1,265 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "cafeteriaBold";
+	src: url("../fonts/cafeteria-bold.ttf");
+}
+
+body, div, p, input, select {
+	margin:0px;
+	padding:0px;
+	font-family: "cafeteriaBold";
+}
+
+.clear {
+	clear:both;
+}
+
+.global {
+	margin:0px auto;
+	width:100%;
+}
+
+.global .haut {
+	width:100%;
+}
+
+.global .haut .utopique {
+	background-image:url(../medias/general/utopique.jpg);
+	background-size:170px 30px;
+	background-repeat:no-repeat;
+	width:180px;
+	height:30px;
+	margin:20px auto;
+}
+
+.global .bas {
+	width:100%;
+}
+
+.global .bas .realiste {
+	background-image:url(../medias/general/realiste.jpg);
+	background-size:170px 30px;
+	background-repeat:no-repeat;
+	width:180px;
+	height:30px;
+	margin:20px auto;
+}
+
+.global .milieu {
+	width:100%;
+	height:645px;
+}
+
+.global .milieu .gauche {
+	float:left;
+	padding-top:200px;
+	margin:20px;
+}
+
+.global .milieu .gauche .individuel {
+	background-image:url(../medias/general/individuel.jpg);
+	background-size:32px 203px;
+	background-repeat:no-repeat;
+	background-position:center center;
+	width:32px;
+	height:203px;
+	display:inline-block;
+}
+
+.global .milieu .droite {
+	float:right;
+	padding-top:200px;
+	margin:20px;
+}
+
+.global .milieu .droite .collectif {
+	background-image:url(../medias/general/collectif.jpg);
+	background-size:32px 203px;
+	background-repeat:no-repeat;
+	width:32px;
+	height:203px;
+}
+
+.global .milieu .centre {
+	float:left;
+	width:85%; /* ?? */
+}
+
+.global .milieu .centre .ecrans {
+	position: relative;
+}
+
+.global .centre .ecrans .accueil {
+	background-image:url(../medias/accueil/bg.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
+	width:100%;
+	height:640px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	position: absolute;
+}
+
+.global .centre .ecrans .accueil .titres {
+	padding-left:40px;
+	padding-top:500px;
+	position:absolute;
+	left:0px;
+}
+
+.global .centre .ecrans .accueil .titres .titre {
+	background-image:url(../medias/accueil/le-bonheur-brut-collectif.png);
+	background-size:402px 41px;
+	background-repeat:no-repeat;
+	width:402px;
+	height:41px;
+}
+
+.global .centre .ecrans .accueil .titres .soustitre {
+	background-image:url(../medias/accueil/bonheur-soustitre.png);
+	background-size:477px 42px;
+	background-repeat:no-repeat;
+	width:477px;
+	height:42px;
+}
+
+.global .centre .ecrans .accueil .projets {
+	background-image:url(../medias/accueil/menu_bg.png);
+	background-size:595px 662px;
+	background-repeat:no-repeat;
+	width:425px;
+	height:662px;
+	padding-left:150px;
+	padding-top:180px;
+	padding-bottom:20px;
+	position:absolute;
+	right:0px;
+}
+
+.global .centre .ecrans .accueil .projets .header {
+	background-image:url(../medias/accueil/menu_header.png);
+	background-size:267px 68px;
+	background-repeat:no-repeat;
+	width:267px;
+	height:68px;
+}
+
+.global .centre .ecrans .accueil .projets .liste {
+}
+
+.global .centre .ecrans .accueil .projets .liste li {
+}
+
+/* point_rouge.png */
+
+.global .centre .ecrans .mosaique {
+	background-size:cover;
+	background-repeat:no-repeat;
+	width:100%;
+	height:640px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	overflow:hidden;
+	display:none;
+	position: absolute;
+}
+
+.global .centre .ecrans .mosaique .mosaiqueModes {
+	position: relative;
+}
+
+.global .centre .ecrans .mosaique .mosaiqueModes .modeTexte {
+	position: absolute;
+	display:none;
+}
+
+.global .centre .ecrans .mosaique .mosaiqueModes .modeIcone {
+	position: absolute;
+}
+
+.global .centre .ecrans .indices {
+	position: absolute;
+}
+
+.global .centre .ecrans .popup {
+	position: absolute;
+	background-color:rgba(255,255,255,0.95);
+}
+
+.global .centre .ecrans .popup .popupContent {
+	position:relative;
+}
+
+.global .centre .ecrans .popup .popupClose {
+	position:absolute;
+	right:0px;
+	width:50px;
+	height:50px;
+	cursor:pointer;
+	z-index:2;
+}
+
+.global .centre .ecrans .popup .popupMedia {
+	position:absolute;
+	z-index:1;
+}
+
+.global .centre .ecrans .popup .popupMedia img {
+	margin:0 auto;
+	display: block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+}
+
+.global .centre .ecrans .popup .popupMedia img {
+	max-height: 100%;
+	width:auto;
+}
+
+.global .centre .ecrans .popup .popupMedia img {
+	max-width: 100%;
+	height:auto;
+}
+
+.global .centre .ecrans .popup .popupSliders {
+	position:absolute;
+	width:100%;
+	height:80px;
+	z-index:3;
+}
+
+.global .centre .ecrans .popup .popupSliders .inputs {
+	margin:0 auto;
+	width:320px;
+}
+
+.global .centre .ecrans .popup .popupSliders .inputs .sliders {
+}
+
+.global .centre .ecrans .popup .popupSliders .inputs .sliders span {
+	width:60px;
+	display:inline-block;
+}
+
+.global .centre .ecrans .popup .popupSliders .inputs input {
+	width:180px;
+	margin:5px;
+	vertical-align: middle;
+}
+
+.global .centre .ecrans .popup .popupSliders .button {
+	margin:4px auto;
+	width:100px;
+}
+
+.global .centre .ecrans .popup .popupSliders .button button {
+	width:90px;
+}
+
+
+

@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	<title>BBC upload</title>
+	<link rel='stylesheet' href='styles/bbc.css' type='text/css' />
+    
+	<script src="js/libs/jquery-2.1.1.min.js"></script>
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/underscore.strings.js"></script>
+    <script src="js/libs/backbone-min.js"></script>
+    <script src="js/libs/json2_min.js"></script>
+	<script src="js/libs/kinetic-v5.1.0.min.js"></script>
+	<script src="js/libs/mediaelement-and-player.min.js"></script>
+    
+</head>
+<body>
+	
+	<!--  -->
+	<!-- TEMPLATES -->
+	<!--  -->
+
+	<script id="imageTemplate" type="text/template">
+		<img src='<%= url %>' alt='' />
+    </script>
+    
+	<script id="videoTemplate" type="text/template">
+		<video width='<%= width %>' height='<%= height %>' id='playervideo' <%= html5options %> >
+			<source src='<%= url %>' type='video/mp4' />
+		</video>
+    </script>
+
+
+	<!--  -->
+	<!-- HTML -->
+	<!--  -->
+
+	<div class="global">
+
+		<div id="etape_user">
+        	<form id="loginForm">
+              <input type="input" id="pseudo" name="pseudo" value="carolann_bbc" />
+              <input type="input" id="password" name="password"  />
+              <button type="submit" id="login-button">Login</button>
+            </form>
+        </div>
+        
+		<div id="etape_upload" style="display:none">
+        	<form id="fileUploadForm" action="http://ms.dring93.org/upload" method="POST">
+              <input type="file" id="fileSelect" name="file[]" />
+              <button type="submit" id="uploadButton">Upload</button>
+            </form>
+        </div>
+        
+    </div>
+
+	
+	</script>
+    
+	<script src="js/models_backbone.js"></script>
+	<script src="js/views_backbone.js"></script>
+	<script src="js/setup_upload.js"></script>
+
+</body>
+</html>

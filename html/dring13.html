@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	<title>Dring 13</title>
+	<link rel='stylesheet' href='styles/dring13.css' type='text/css' />
+    
+	<script src="js/libs/jquery-2.1.1.min.js"></script>
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/underscore.strings.js"></script>
+    <script src="js/libs/backbone-min.js"></script>
+    <script src="js/libs/json2_min.js"></script>
+	<script src="js/libs/mediaelement-and-player.min.js"></script>
+    <script src="js/libs/spin.min.js"></script>
+	<script src="js/libs/greensock/TweenMax.min.js"></script>
+    <script src="js/libs/greensock/utils/Draggable.min.js"></script>
+    <script src="js/libs/greensock/TimelineLite.min.js"></script>
+    
+</head>
+<body>
+	
+	<!--  -->
+	<!-- TEMPLATES -->
+	<!--  -->
+
+	<script id="queryTemplate" type="text/template">
+		<div class="queryTitre"><p><a href="#"><%= content %></a></p></div>
+    </script>
+    
+	<script id="itemTemplate" type="text/template">
+		<div class="itemTitre"><a href="#"><%= title %></a></div>
+    </script>
+    
+	<script id="dringTemplate" type="text/template">
+		<div class="itemTitre item<%= id %>"  data-id="<%= id %>" style="position:absolute;left:<%= left %>px;top:<%= top %>px">
+			<a href="#"><img src='images/persoHomme.png' alt='<%= title %>' /></a>
+		</div>
+    </script>
+    
+   	<script id="dringUserTemplate" type="text/template">
+		<div class="user">
+			<div class="userParent">
+				<div class="userName user<%= id %>"  data-id="<%= id %>" >
+					<a href="#"><%= firstName %> <%= lastName %></a>
+				</div>
+				<div class="userItemsParent">
+				</div>
+			</div>
+		</div>
+    </script>
+    
+   	<script id="dringMotCleTemplate" type="text/template">
+		<div class="motCle">
+			<div class="motCleParent">
+				<div class="motCleTitle motCle<%= id %>" data-id="<%= id %>" >
+					<a href="#"><%= content %></a>
+				</div>
+				<div class="motCleItemsParent">
+				</div>
+			</div>
+		</div>
+    </script>
+    
+	<script id="dringMapTemplate" type="text/template">
+		<div class="itemTitre item<%= id %>"  data-id="<%= id %>" style="position:absolute;left:<%= mapLeft %>px;top:<%= mapTop %>px">
+			<a href="#"><img src='images/persoHomme.png' alt='<%= title %>' /></a>
+		</div>
+    </script>
+    
+	<script id="popUpTemplate" type="text/template">
+		<div class="popupContent">
+			<div class="popupHeader">
+				<div class="popupClose">x</div>
+			</div>
+			<div class="popupMedia">
+			</div>
+			<div class="popupInputComment">
+				<textarea type="text" id="newComment"></textarea>
+			</div>
+			<div class="popupButtons">
+				<button class="voteButton cool"><%= choix1 %></button>
+				<button class="voteButton pasCool"><%= choix2 %></button>
+			</div>
+			<div class="popupComments" id="comments">
+			</div>
+		</div>
+    </script>
+    
+	<script id="commentTemplate" type="text/template">
+		<div class="comment <%= bgcolor %>"><p><%= content %></p>
+    </script>
+    
+	<script id="imageTemplate" type="text/template">
+		<img src='<%= url %>' alt='' />
+    </script>
+    
+	<script id="videoTemplate" type="text/template">
+		<video width='<%= width %>' height='<%= height %>' id='playervideo' <%= html5options %> >
+			<source src='<%= url %>' type='video/mp4' />
+		</video>
+    </script>
+
+	<script id="uploadFormTemplate" type="text/template">
+		<div class="uploadContent">
+			<div class="uploadHeader">
+				<div class="uploadClose">x</div>
+			</div>
+			<div class="uploadBody">
+			
+				<div id="etape_user">
+					<form id="loginForm">
+						<input type="input" id="pseudo" name="pseudo" value="" />
+						<input type="input" id="password" name="password"  />
+						<button type="submit" id="login-button">Login</button>
+					</form>
+				</div>
+				
+				<div id="etape_upload" style="display:none">
+					<p>A quelle question répondez-vous ?</p>
+					<select id="formQueries" name="queries" />
+					<br/>
+					<p>Votre commentaire :</p>
+					<input type="input" id="itemTitle" name="itemTitle" value="" />
+					<br/>
+					<p>Chargez votre média (jpeg, png, mp3, mp4) :</p>
+					<form id="fileUploadForm" action="http://ms.dring93.org/upload" method="POST">
+						<input type="file" id="fileSelect" name="file[]" />
+						<button type="submit" id="uploadButton">Upload</button>
+					</form>
+					<div id="uploadedMedia"></div>
+					<button id="toEtape2Button">&gt;</button>
+				</div>
+				
+				<div id="etape_vote" style="display:none">
+					<p>Donnez votre sentiment ?</p>
+					<input type="radio" name="sentiment" value="choix1" checked="checked">Cool</input>
+					<input type="radio" name="sentiment" value="choix2">Pas cool</input>
+					<button id="toEtape3Button">&gt;</button>
+				</div>
+				
+				<div id="etape_keyword" style="display:none">
+					<p>Choisissez un mot-clé :</p>
+					<select id="formKeywords" name="keywords" />
+					<button id="toEtape4Button">&gt;</button>
+				</div>
+				
+				<div id="etape_map" style="display:none">
+					<p>Placez votre témoignage sur la carte :</p>
+					<div id="formMap" class="mapParent">
+						<img class="map" src="<%= urlCarte %>" alt="" />
+						<img class="item" src='images/persoHomme.png' alt='' />
+					</div>
+					<button id="toEtape5Button">&gt;</button>
+				</div>
+				
+				<div id="etape_conclusion" style="display:none">
+					<p>Merci de votre contribution !</p>
+					<div class="buttonParent">
+						<button id="toEtape6Button">&gt;</button>
+					</div>					
+				</div>
+					
+			</div>
+		</div>
+    </script>
+
+
+
+	<!--  -->
+	<!-- HTML -->
+	<!--  -->
+
+
+</head>
+
+<body>
+
+	<div class="global">
+        <div class="onglets items">
+			<div class="titre">MJC Nogent</div>
+        	<div class="tabs">
+                <div class="onglet motcles">Les mots-clés</div>
+                <div class="onglet items">Cool pas cool</div>
+                <div class="onglet carte">Voir la carte</div>
+                <div class="onglet users">Qui a envoyé ?</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="questions">
+                <div class="questionsParent" id="queries"></div>        
+            </div>
+            <div class="mosaique">
+                <div class="vue" id="items"></div>
+                <div class="vue" id="users"></div>
+                <div class="vue" id="carte"></div>
+                <div class="vue" id="motcles"></div>
+            </div>
+            <div class="popup" id="popup"></div>
+            <div class="animationAttente" id="attente"></div>
+			<div class="uploadParent"></div>
+        </div>
+	
+        <div class="footer">
+    		<button id="envoyer" class>envoyer votre témoignage</button>
+        </div>
+        
+    </div>
+
+    
+	<script src="js/utils.js"></script>
+	<script src="js/models_backbone.js"></script>
+	<script src="js/views_backbone.js"></script>
+	<script src="js/views_controler.js"></script>
+	<script src="js/views_dring13.js"></script>
+	<script src="js/setup_dring13.js"></script>
+
+</body>
+</html>

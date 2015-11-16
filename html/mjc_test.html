@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	<title>MJC Nogent</title>
+	<link rel='stylesheet' href='styles/mjc.css' type='text/css' />
+    
+	<script src="js/libs/jquery-2.1.1.min.js"></script>
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/underscore.strings.js"></script>
+    <script src="js/libs/backbone-min.js"></script>
+    <script src="js/libs/json2_min.js"></script>
+    <script src="js/libs/kinetic-v5.1.0.min.js"></script>
+    <script src="js/libs/mediaelement-and-player.min.js"></script>
+    <script src="js/libs/spin.min.js"></script>
+    <script src="js/libs/greensock/TweenMax.min.js"></script>
+    <script src="js/libs/greensock/utils/Draggable.min.js"></script>
+    <script src="js/libs/greensock/TimelineLite.min.js"></script>
+ 
+</head>
+<body>
+	
+	<!--  -->
+	<!-- TEMPLATES -->
+	<!--  -->
+
+	<script id="queryTemplate" type="text/template">
+		<div class="queryTitre couleur_base"><a href="#"><%= content %></a></div>
+		<div class="queryDescription"><a href="#"><%= description %></a></div>
+    </script>
+    
+	<script id="itemTemplate_" type="text/template">
+		<div class="itemTitre"><a href="#"><%= title %></a></div>
+    </script>
+   
+	<script id="itemTemplate" type="text/template">
+		<div class="itemTitre item<%= id %>"  data-id="<%= id %>" style="position:absolute;left:<%= left %>px;top:<%= top %>px">
+			<a href="#"><img src='images/cercleRouge.png' alt='<%= title %>' /></a>
+		</div>
+    </script>
+    
+   	<script id="itemUserTemplate" type="text/template">
+		<div class="user">
+			<div class="userParent">
+				<div class="userName user<%= id %>"  data-id="<%= id %>" >
+					<a href="#"><%= firstName %> <%= lastName %></a>
+				</div>
+				<div class="userItemsParent">
+				</div>
+			</div>
+		</div>
+    </script>
+    
+   	<script id="itemMotCleTemplate" type="text/template">
+		<div class="motCle">
+			<div class="motCleParent">
+				<div class="motCleTitle motCle<%= id %>" data-id="<%= id %>" >
+					<a href="#"><%= content %></a>
+				</div>
+				<div class="motCleItemsParent">
+				</div>
+			</div>
+		</div>
+    </script>
+    
+	<script id="itemMapTemplate" type="text/template">
+		<div class="itemTitre item<%= id %>"  data-id="<%= id %>" style="position:absolute;left:<%= mapLeft %>px;top:<%= mapTop %>px">
+			<a href="#"><img src='images/cercleRouge.png' alt='<%= title %>' /></a>
+		</div>
+    </script>
+    
+	<script id="popUpTemplate" type="text/template">
+		<div class="popupContent">
+			<div class="popupHeader">
+				<div class="popupClose">x</div>
+			</div>
+			<div class="popupMedia">
+			</div>
+			<div class="popupSliders">
+				<div class="inputs">
+					<div class="sliders">
+						<span>Individuel</span><input type="range" id="sliderIc" min="0" max="100" value="50" /><span>Collectif</span><br/>
+						<span>Réaliste</span><input type="range" id="sliderRu" min="0" max="100" value="50" /><span>Utopique</span>
+					</div>
+				</div>
+				<div class="button">
+					<button class="voteButton">Vote</button>
+				</div>
+			</div>
+		</div>
+    </script>
+    
+	<script id="imageTemplate" type="text/template">
+		<img src='<%= url %>' alt='' />
+    </script>
+    
+	<script id="videoTemplate" type="text/template">
+		<video width='<%= width %>' height='<%= height %>' id='playervideo' <%= html5options %> >
+			<source src='<%= url %>' type='video/mp4' />
+		</video>
+    </script>
+
+	<script id="uploadFormTemplate" type="text/template">
+		<div class="uploadContent">
+			<div class="uploadHeader">
+				<div class="uploadClose">x</div>
+			</div>
+			<div class="uploadBody">
+			
+				<div id="etape_user">
+					<form id="loginForm">
+						<input type="input" id="pseudo" name="pseudo" value="" />
+						<input type="input" id="password" name="password"  />
+						<button type="submit" id="login-button">Login</button>
+					</form>
+				</div>
+				
+				<div id="etape_upload" style="display:none">
+					<p>A quelle question répondez-vous ?</p>
+					<select id="formQueries" name="queries" />
+					<br/>
+					<p>Votre commentaire :</p>
+					<input type="input" id="itemTitle" name="itemTitle" value="" />
+					<br/>
+					<p>Chargez votre média (jpeg, png, mp3, mp4) :</p>
+					<form id="fileUploadForm" action="http://ms.dring93.org/upload" method="POST">
+						<input type="file" id="fileSelect" name="file[]" />
+						<button type="submit" id="uploadButton">Upload</button>
+					</form>
+					<div id="uploadedMedia"></div>
+					<button id="toEtape2Button">&gt;</button>
+				</div>
+				
+				<div id="etape_vote" style="display:none">
+					<p>Donnez votre sentiment ?</p>
+					<div class="inputs">
+						<div class="sliders">
+							<span>Individuel</span><input type="range" id="uploadSliderIc" min="0" max="100" value="50" /><span>Collectif</span><br/>
+							<span>Réaliste</span><input type="range" id="uploadSliderRu" min="0" max="100" value="50" /><span>Utopique</span>
+						</div>
+					</div>
+					<button id="toEtape3Button">&gt;</button>
+				</div>
+				
+				<div id="etape_keyword" style="display:none">
+					<p>Choisissez un mot-clé :</p>
+					<div id="formKeywords" class="keywords"></div>
+					<div class="buttonParent">
+						<button id="toEtape4Button">&gt;</button>
+					</div>
+				</div>
+				
+				<div id="etape_map" style="display:none">
+					<p>Placez votre témoignage sur la carte :</p>
+					<div id="formMap" class="mapParent">
+						<img class="map" src="<%= urlCarte %>" alt="" />
+						<img class="item" src='images/persoHomme.png' alt='' />
+					</div>
+					<div class="buttonParent">
+						<button id="toEtape5Button">&gt;</button>
+					</div>					
+				</div>
+				
+				<div id="etape_conclusion" style="display:none">
+					<p>Merci de votre contribution !</p>
+					<div class="buttonParent">
+						<button id="toEtape6Button">&gt;</button>
+					</div>					
+				</div>
+					
+			</div>
+		</div>
+    </script>
+
+
+	<!--  -->
+	<!-- HTML -->
+	<!--  -->
+
+	<div class="global">
+    
+        <div class="haut">
+        	<div class="terme couleur_base utopique"><p>utopique</p></div>
+        </div>
+        
+        <div class="milieu">
+        
+            <div class="gauche">
+            	<div class="terme couleur_base individuel"><p>individuel</p></div>
+            </div>
+
+            
+            <div class="centre">
+            
+                <div class="ecrans">
+                
+                    <div class="accueil">
+                    
+                        <div class="projets">
+                            <div class="header">
+                                <div class="close">x</div>
+                           	</div>
+                            <div class="introduction">
+                            	<span class="couleur_base">Bienvenue au site de débat "Conflit de Canards" !</span>
+                                Choisissez une question, écoutez ce que chacun en dit, participez en envoyant une vidéo, un texte
+                                ou un enregistrement sonore. Vous pourrez voir qui a participé, où et quels mots-clés structurent le débat.
+                           	</div>
+                            <div class="liste" id="queries"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mosaique" id="mosaique">
+                        <div class="mosaiqueModes">
+                            <div class="vue items" id="items"></div>
+                            <div class="vue users" id="users"></div>
+                            <div class="vue carte" id="carte"></div>
+                            <div class="vue motcles" id="motcles"></div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="indices" id="indices"></div>                    
+                    <div class="popup" id="popup"></div>                  
+                    <div class="animationAttente" id="attente"></div>
+                    <div class="uploadParent"></div>
+                
+                </div>
+                
+            </div>
+            
+            <div class="droite">
+            	<div class="terme couleur_base collectif"><p>collectif</p></div>
+            </div>
+            
+            <div class="clear"></div>
+        </div>
+        
+        <div class="bas">
+        	<div class="terme couleur_base realiste"><p>réaliste</p></div>
+        </div>
+        
+        <div class="footer">
+        	<div class="tabs">
+                <div class="onglet items active">Les opinions</div>
+                <div class="onglet users">Les participants</div>
+                <div class="onglet carte">Les lieux</div>
+                <div class="onglet motcles">Les «tags»</div>
+            </div>
+            <button id="envoyer" class>envoyer votre témoignage</button>
+        </div>
+        
+    </div>
+    
+	<script src="js/utils.js"></script>
+	<script src="js/draw_mjc.js"></script>
+	<script src="js/models_backbone.js"></script>
+	<script src="js/views_backbone.js"></script>
+	<script src="js/views_controler.js"></script>
+	<script src="js/views_mjc.js"></script>
+	<script src="js/setup_mjc.js"></script>
+
+</body>
+</html>

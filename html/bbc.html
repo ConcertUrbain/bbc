@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	<title>BBC</title>
+	<link rel='stylesheet' href='styles/bbc.css' type='text/css' />
+    
+	<script src="js/libs/jquery-2.1.1.min.js"></script>
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/underscore.strings.js"></script>
+    <script src="js/libs/backbone-min.js"></script>
+    <script src="js/libs/json2_min.js"></script>
+    <script src="js/libs/kinetic-v5.1.0.min.js"></script>
+    <script src="js/libs/mediaelement-and-player.min.js"></script>
+    <script src="js/libs/spin.min.js"></script>
+    <script src="js/libs/greensock/TweenMax.min.js"></script>
+    <script src="js/libs/greensock/utils/Draggable.min.js"></script>
+    <script src="js/libs/greensock/TimelineLite.min.js"></script>
+ 
+</head>
+<body>
+	
+	<!--  -->
+	<!-- TEMPLATES -->
+	<!--  -->
+
+	<script id="queryTemplate" type="text/template">
+		<div class="queryTitre"><a href="#"><%= content %></a></div>
+    </script>
+    
+	<script id="itemTemplate" type="text/template">
+		<div class="itemTitre"><a href="#"><%= title %></a></div>
+    </script>
+    
+	<script id="popUpTemplate" type="text/template">
+		<div class="popupContent">
+			<div class="popupHeader">
+				<div class="popupClose">x</div>
+			</div>
+			<div class="popupMedia">
+			</div>
+			<div class="popupSliders">
+				<div class="inputs">
+					<div class="sliders">
+						<span>Individuel</span><input type="range" id="sliderIc" min="0" max="100" value="50" /><span>Collectif</span><br/>
+						<span>Réaliste</span><input type="range" id="sliderRu" min="0" max="100" value="50" /><span>Utopique</span>
+					</div>
+				</div>
+				<div class="button">
+					<button class="voteButton">Vote</button>
+				</div>
+			</div>
+		</div>
+    </script>
+    
+	<script id="imageTemplate" type="text/template">
+		<img src='<%= url %>' alt='' />
+    </script>
+    
+	<script id="videoTemplate" type="text/template">
+		<video width='<%= width %>' height='<%= height %>' id='playervideo' <%= html5options %> >
+			<source src='<%= url %>' type='video/mp4' />
+		</video>
+    </script>
+
+
+	<!--  -->
+	<!-- HTML -->
+	<!--  -->
+
+	<div class="global">
+    
+        <div class="haut"><div class="utopique"></div></div>
+        
+        <div class="milieu">
+        
+            <div class="gauche"><div class="individuel"></div></div>
+
+            
+            <div class="centre">
+            
+                <div class="ecrans">
+                
+                    <div class="accueil">
+                    
+                        <div class="titres">
+                            <div class="titre"></div>
+                            <div class="soustitre"></div>                
+                        </div>
+                        
+                        <div class="projets">
+                            <div class="header"></div>
+                            <div class="liste" id="queries"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mosaique" id="mosaique">
+                        <div class="mosaiqueModes">
+                            <div class="modeTexte" id="items"></div>
+                            <div class="modeIcone" id="motifsItems"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="indices" id="indices">
+                	</div>
+                    
+                    <div class="popup" id="popup">
+                	</div>
+                
+                </div>
+                
+            </div>
+            
+            <div class="droite"><div class="collectif"></div></div>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="bas"><div class="realiste"></div></div>
+        
+    </div>
+    
+	<script src="js/draw_bbc.js"></script>
+	<script src="js/models_backbone.js"></script>
+	<script src="js/views_backbone.js"></script>
+	<script src="js/views_controler.js"></script>
+	<script src="js/views_bbc.js"></script>
+	<script src="js/setup_bbc.js"></script>
+
+</body>
+</html>

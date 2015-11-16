@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mjc>
+	
+	<!-- -->
+	<!-- Saint-Denis -->
+	<!-- -->
+	
+	<query id="70" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+		<carte>
+			<image>BBC_CARTE_SAINTDENIS.png</image>
+			<topleft>48.951081, 2.334334</topleft>
+			<bottomright>48.924244, 2.395274</bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- Paris, Sud -->
+	<!-- -->
+	
+	<query id="81" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+		<carte>
+			<image></image>
+			<topleft></topleft>
+			<bottomright></bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- Magic Spark (ex-Madison) -->
+	<!-- -->
+	
+	<query id="82" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+	</query>
+	
+	<!-- -->
+	<!-- Même pas mal -->
+	<!-- -->
+	
+	<query id="83" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+		<carte>
+			<image>BBC_CARTE_MEMEPASMAL.png</image>
+			<topleft>48.863298, 2.367034</topleft>
+			<bottomright>48.857722, 2.378879</bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- Kremlin Bicètre (ex-Lima, Peru) -->
+	<!-- -->
+	
+	<query id="84" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+	</query>
+	
+	<!-- -->
+	<!-- Paroles partagées -->
+	<!-- -->
+	
+	<query id="86" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+		<carte>
+			<image>BBC_CARTE_parolespartagees.png</image>
+			<topleft>48.826913, 2.364946</topleft>
+			<bottomright>48.820881, 2.379355</bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- Le bonheur à Bruay -->
+	<!-- -->
+	
+	<query id="87" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+	</query>
+	
+	<!-- -->
+	<!-- FENS -->
+	<!-- -->
+	
+	<query id="89" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+		<carte>
+			<image>BBC_CARTE_6B.png</image>
+			<topleft>48.947332, 2.328755</topleft>
+			<bottomright>48.931856, 2.370275</bottomright>
+		</carte>
+	</query>
+	
+	<!-- -->
+	<!-- SOUK MACHINES -->
+	<!-- -->
+	
+	<query id="90" subfolder="mjc_nogent/">
+		<images>Nogent_Baltard_flou.jpg,Nogent_kiosk_flou.jpg,Nogent_riviere_bateaux_flou.jpg,Nogent_riviereseule_floue.jpg</images>
+		<carte>
+			<image>BBC_CARTE_6B.png</image>
+			<topleft>48.947332, 2.328755</topleft>
+			<bottomright>48.931856, 2.370275</bottomright>
+		</carte>
+	</query>
+	
+</mjc>

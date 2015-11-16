@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	<title>Dring 13</title>
+	<link rel='stylesheet' href='styles/dring13.css' type='text/css' />
+    
+	<script src="js/libs/jquery-2.1.1.min.js"></script>
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/underscore.strings.js"></script>
+    <script src="js/libs/backbone-min.js"></script>
+    <script src="js/libs/json2_min.js"></script>
+	<script src="js/libs/mediaelement-and-player.min.js"></script>
+    <script src="js/libs/spin.min.js"></script>
+    <script src="js/libs/greensock/TweenMax.min.js"></script>
+    <script src="js/libs/greensock/utils/Draggable.min.js"></script>
+    <script src="js/libs/greensock/TimelineLite.min.js"></script>
+    
+</head>
+<body>
+	
+	<!--  -->
+	<!-- TEMPLATES -->
+	<!--  -->
+
+	<script id="queryTemplate" type="text/template">
+		<div class="queryTitre"><p><a href="#"><%= content %></a></p></div>
+    </script>
+    
+	<script id="itemTemplate" type="text/template">
+		<div class="itemTitre"><a href="#"><%= title %></a></div>
+    </script>
+    
+	<script id="popUpTemplate" type="text/template">
+		<div class="popupContent">
+			<div class="popupHeader">
+				<div class="popupClose">x</div>
+			</div>
+			<div class="popupMedia">
+			</div>
+			<div class="popupSliders">
+				<div class="inputs">
+					<div class="sliders">
+						<span>Individuel</span><input type="range" id="sliderIc" min="0" max="100" value="50" /><span>Collectif</span><br/>
+						<span>Réaliste</span><input type="range" id="sliderRu" min="0" max="100" value="50" /><span>Utopique</span>
+					</div>
+				</div>
+				<div class="button">
+					<button class="voteButton">Vote</button>
+				</div>
+			</div>
+		</div>
+    </script>
+    
+	<script id="imageTemplate" type="text/template">
+		<img src='<%= url %>' alt='' />
+    </script>
+    
+	<script id="videoTemplate" type="text/template">
+		<video width='<%= width %>' height='<%= height %>' id='playervideo' <%= html5options %> >
+			<source src='<%= url %>' type='video/mp4' />
+		</video>
+    </script>
+
+
+	<!--  -->
+	<!-- HTML -->
+	<!--  -->
+
+
+</head>
+
+<body>
+
+	<div class="global">
+        <div class="onglets items">
+			<div class="titre"></div>
+        	<div class="tabs">
+                <div class="onglet motcles">Les mots-clés</div>
+                <div class="onglet items">Cool pas cool</div>
+                <div class="onglet carte">Voir la carte</div>
+                <div class="onglet users">Qui a envoyé ?</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="questions">
+                <div class="questionsParent" id="queries"></div>        
+            </div>
+            <div class="mosaique">
+                <div class="itemsParent" id="items"></div>
+            </div>
+        </div>
+    </div>
+
+	<script src="js/utils.js"></script>
+	<script src="js/models_backbone.js"></script>
+	<script src="js/views_backbone.js"></script>
+	<script src="js/views_controler.js"></script>
+	<script src="js/setup.js"></script>
+</body>
+</html>
