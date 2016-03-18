@@ -127,7 +127,7 @@
             App.Views.appView.longitudeDroite = 2.513038;
 			*/
 			
-			var cartesFolder = "./cartes/";
+			var cartesFolder = "../cartes/";
 			
 			App.Views.appView.cartes = [
 				{ 	id: 70,

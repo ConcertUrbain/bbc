@@ -244,7 +244,7 @@
                 <p class="rubrique">Placez votre témoignage sur la carte :</p>
                 <div>
                     <div id="formMap" class="mapParent">
-                        <img class="map" src="<%= urlCarte %>" alt="" />
+                        <img class="map" width="1600" src="<%= urlCarte %>" alt="" />
                         <img class="item" src='front/dring13/persoRouge.png' alt='' />
                     </div>
                 </div>
