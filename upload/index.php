@@ -102,9 +102,9 @@
 
 			// 
 			<?php
-				$queryId = addslashes(_GET["query"]);
-				if (isset($queryId)) {
-					echo('App.Views.appView.currentQuery = "'. $queryId .'")';
+				if (isset($_GET["query"]) === TRUE) {
+					$queryId = addslashes($_GET["query"]);
+					echo('App.Views.appView.currentQuery = "'. $queryId .'";');
 				}
 			?>
 
