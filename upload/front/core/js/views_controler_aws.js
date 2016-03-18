@@ -1738,6 +1738,28 @@ var AppView = Backbone.View.extend({
 		var uploadForm = $(".uploadParent"); 
 		mapParent.css("height", uploadForm.height() * 0.5);
 		
+		if (_.isArray(this.cartes)) {
+			var i, n = this.cartes.length;
+			for(i=0; i<n;i++) {
+				var carteObj = this.cartes[i];
+				if (carteObj.id == t.uploadQueryId) {
+					
+					t.latitudeTop = carteObj.latitudeTop;
+					t.longitudeGauche = carteObj.longitudeGauche;
+					t.latitudeBottom = carteObj.latitudeBottom;
+					t.longitudeDroite = carteObj.longitudeDroite;
+					t.largeurCarte = carteObj.largeurCarte;
+					t.longueurCarte = carteObj.longueurCarte;
+					
+					console.log("CARTE", carteObj);
+					
+					map.attr("src", carteObj.mapURL);
+			
+					break;
+				}
+			}
+		}
+
 		var longitudeGauche = t.longitudeGauche;
 		var latitudeTop = t.latitudeTop;
 		
@@ -1747,7 +1769,10 @@ var AppView = Backbone.View.extend({
 		var mapX = (t.latitudeBottom + latitudeTop) * 0.5;
 		var mapY = (t.longitudeDroite + longitudeGauche) * 0.5;
 		
-		// console.log(mapX, mapY);
+		if (mapHeight == 0) mapHeight = mapWidth / t.largeurCarte * t.longueurCarte;
+		
+		console.log(longitudeGauche, latitudeTop, longitudeGaucheDroite, latitudeTopBottom);
+		console.log(mapX, mapY, mapWidth, mapHeight);
 		
 		var onDragEnd = function(e) {
 			
@@ -1769,7 +1794,7 @@ var AppView = Backbone.View.extend({
 			mapX = latitude;
 			mapY = longitude;
 			 
-			// console.log(positionX, positionY, mapWidth, mapHeight, "mapX", mapX, "mapY", mapY);
+			console.log(positionX, positionY, mapWidth, mapHeight, "mapX", mapX, "mapY", mapY);
 
 			// Au premier déplacement, on affiche le bouton de validation :
 			$("#toEtape5Button").css("display", "inline");

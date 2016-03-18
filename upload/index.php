@@ -100,6 +100,14 @@
             App.Views.appView.titreAccueil = "";
             App.Views.appView.queriesPrefix = "";
 
+			// 
+			<?php
+				$queryId = addslashes(_GET["query"]);
+				if (isset($queryId)) {
+					echo('App.Views.appView.currentQuery = "'. $queryId .'")';
+				}
+			?>
+
             // Key API
             App.Views.appView.proxy = "front/core/proxy/ba-simple-proxy.php?url=";
             App.Views.appView.initAdminParams(
@@ -109,13 +117,65 @@
             );
 
             // Carte
-            App.Views.appView.mapURL = "http://cdn.aws.chatanoo.org/mjc/nogent/cartes/Nogent.jpg";
+			/*
+            App.Views.appView.mapURL = "...";
             App.Views.appView.largeurCarte = 1804;
             App.Views.appView.longueurCarte = 1210;
             App.Views.appView.latitudeTop = 48.850582;
             App.Views.appView.latitudeBottom = 48.823747;
             App.Views.appView.longitudeGauche = 2.452784;
             App.Views.appView.longitudeDroite = 2.513038;
+			*/
+			
+			var cartesFolder = "./cartes/";
+			
+			App.Views.appView.cartes = [
+				{ 	id: 70,
+					mapURL: cartesFolder + "BBC_CARTE_SAINTDENIS.png",
+					largeurCarte: 1000,
+					longueurCarte: 731,
+					latitudeTop: 48.951081,
+					longitudeGauche: 2.334334,
+					latitudeBottom: 48.924244,
+					longitudeDroite: 2.395274	
+				},
+				{ 	id: 83,
+					mapURL: cartesFolder + "BBC_CARTE_MEMEPASMAL.png",
+					largeurCarte: 1000,
+					longueurCarte: 745,
+					latitudeTop: 48.863298,
+					longitudeGauche: 2.367034,
+					latitudeBottom: 48.857722,
+					longitudeDroite: 2.378879	
+				},
+				{ 	id: 86,
+					mapURL: cartesFolder + "BBC_CARTE_parolespartagees.png",
+					largeurCarte: 1000,
+					longueurCarte: 679,
+					latitudeTop: 48.826913,
+					longitudeGauche: 2.364946,
+					latitudeBottom: 48.820881,
+					longitudeDroite: 2.379355	
+				},
+				{ 	id: 89,
+					mapURL: cartesFolder + "BBC_CARTE_6B.png",
+					largeurCarte: 1000,
+					longueurCarte: 738,
+					latitudeTop: 48.947332,
+					longitudeGauche: 2.328755,
+					latitudeBottom: 48.931856,
+					longitudeDroite: 2.370275	
+				},
+				{ 	id: 90,
+					mapURL: cartesFolder + "BBC_CARTE_6B.png",
+					largeurCarte: 1000,
+					longueurCarte: 738,
+					latitudeTop: 48.947332,
+					longitudeGauche: 2.328755,
+					latitudeBottom: 48.931856,
+					longitudeDroite: 2.370275	
+				}
+			];
 
             App.Views.appView.connectToWebServicesForUpload();
         })
