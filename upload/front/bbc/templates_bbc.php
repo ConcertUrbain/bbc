@@ -245,7 +245,7 @@
                 <div>
                     <div id="formMap" class="mapParent">
                         <img class="map" width="1600" src="<%= urlCarte %>" alt="" />
-                        <img class="item" src='front/dring13/persoRouge.png' alt='' />
+                        <img class="item" src='./front/bbc/persoRouge.png' alt='' />
                     </div>
                 </div>
                 <div class="buttonParent">
